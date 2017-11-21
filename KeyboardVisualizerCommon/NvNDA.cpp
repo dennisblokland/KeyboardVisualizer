@@ -106,7 +106,7 @@ int nda_init()
 	return 0;
 }
 
-int nda_setled(int percent, int color)
+int nda_setled(int percent, int r, int g, int b)
 {
 	if (library == NULL)
 		return ENOENT;
@@ -119,18 +119,15 @@ int nda_setled(int percent, int color)
 	if (NULL == setled)
 		return ENOSYS;
 	for (int c = 0; c < cards; c++) {
-		uint8_t r, g, b;
+		
 		bool res;
 		if (percent != -1) {
 			r = g = b = percent * 0xFF;
 			res = setled(c, LED_LOGO, (int)percent);
 			if (!res) continue;
 		} else {
-			r = (color >> 16) & 0xFF;
-			g = (color >> 8) & 0xFF;
-			b = (color & 0xFF);
 		}
-		if (!color || !percent)
+		if (!percent)
 			res = setrgb(c, 24, MSI_ALL, 0, 0, 0, 4, 0, 0, 0x20, 0x20, 0x20, false); // turn off
 		else
 			res = setrgb(c, 21, MSI_ALL, 0, 0, 0, 4, 0, 0, (int)r, (int)g, (int)b, false);

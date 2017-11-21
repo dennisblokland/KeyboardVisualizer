@@ -12,7 +12,7 @@ static boolean failed;
 
 
 int nda_init();
-int nda_setled(int percent, int color);
+int nda_setled(int percent, int r, int g, int b);
 void nda_close();
 
 NvNDAMSI::NvNDAMSI()
@@ -40,9 +40,8 @@ bool NvNDAMSI::SetLEDs(COLORREF pixels[64][256])
 
 		
 		COLORREF single_color = pixels[ROW_IDX_SINGLE_COLOR][0];
-		int color = (int)createRGB(GetRValue(single_color) / 2.55f, GetGValue(single_color) / 2.55f, GetBValue(single_color) / 2.55f);
 		nda_init();
-		nda_setled(-1, color);
+		nda_setled(-1, GetRValue(single_color) / 2.55f, GetGValue(single_color) / 2.55f, GetBValue(single_color) / 2.55f);
 		nda_close();
 		return TRUE;
 	
