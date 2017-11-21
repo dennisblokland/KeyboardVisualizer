@@ -27,7 +27,7 @@
 #include "CorsairCUE.h"
 #include "CmKeyboard.h"
 #include "LogitechSDK.h"
-
+#include "NvNDAMSI.h"
 //Includes for devices supported only under Linux
 #else
 #include "RazerChromaLinux.h"
@@ -45,6 +45,7 @@
 CorsairCUE              ckb;
 CmKeyboard              cmkb;
 LogitechSDK             lkb;
+NvNDAMSI				NvNDA;
 
 //Devices supported only under Linux
 #else
@@ -109,6 +110,12 @@ THREAD lkbthread(void *param)
     Visualizer* vis = static_cast<Visualizer*>(param);
     vis->LogitechSDKUpdateThread();
     THREADRETURN
+}
+THREAD MSINDAthread(void *param)
+{
+	Visualizer* vis = static_cast<Visualizer*>(param);
+	vis->NvNDAUpdateThread();
+	THREADRETURN
 }
 
 //Threads for devices supported only under Linux
@@ -1046,6 +1053,7 @@ void Visualizer::StartThread()
     _beginthread(mkbthread, 0, this);
     _beginthread(pkbthread, 0, this);
     _beginthread(lsthread, 0, this);
+	_beginthread(MSINDAthread, 0, this);
 
 #else
     pthread_t threads[10];
@@ -1547,6 +1555,7 @@ void Visualizer::VisThread()
         {
             for (int y = 0; y < 64; y++)
             {
+	
                 //Draw Spectrograph Foreground
                 if (fft_fltr[x] >((1 / 64.0f)*(64.0f - y)))
                 {
@@ -1580,7 +1589,7 @@ void Visualizer::VisThread()
                     }
 
                 }
-
+			
                 //Draw Bar Graph Foreground
                 if (y == ROW_IDX_BAR_GRAPH)
                 {
@@ -1754,6 +1763,16 @@ void Visualizer::LogitechSDKUpdateThread()
     }
 }
 
+
+void Visualizer::NvNDAUpdateThread()
+{
+	while (NvNDA.SetLEDs(pixels_out->pixels))
+	{
+		Sleep(delay);
+	}
+	
+	
+}
 //Thread update functions for devices supported only under Linux
 #else
 

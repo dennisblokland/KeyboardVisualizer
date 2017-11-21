@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dfg|Win32">
+      <Configuration>dfg</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="dfg|x64">
+      <Configuration>dfg</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -36,7 +44,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
@@ -51,10 +59,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='dfg|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='dfg|x64'">
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -182,9 +196,12 @@
     <ClCompile Include="..\KeyboardVisualizerCommon\LogitechSDK.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\MSIKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\net_port.cpp" />
+    <ClCompile Include="..\KeyboardVisualizerCommon\NvNDA.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\PoseidonZRGBKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\RazerChroma.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\serial_port.cpp" />
+    <ClCompile Include="..\KeyboardVisualizerCommon\NvNDAMSI.cpp" />
+    <ClCompile Include="..\KeyboardVisualizerCommon\stdafx.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\SteelSeriesGameSense.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\UsbDevice.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\Visualizer.cpp" />
@@ -200,9 +217,11 @@
     <ClInclude Include="..\KeyboardVisualizerCommon\LogitechSDK.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\MSIKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\net_port.h" />
+    <ClInclude Include="..\KeyboardVisualizerCommon\NvNDAMSI.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\PoseidonZRGBKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\RazerChroma.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\serial_port.h" />
+    <ClInclude Include="..\KeyboardVisualizerCommon\stdafx.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\SteelSeriesGameSense.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\UsbDevice.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\Visualizer.h" />

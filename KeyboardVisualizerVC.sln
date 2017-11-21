@@ -1,22 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyboardVisualizerVC", "KeyboardVisualizerVC\KeyboardVisualizerVC.vcxproj", "{11970D07-B63F-487B-AA02-2EDCAD2F71A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
+		dfg|x86 = dfg|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.Debug|x86.ActiveCfg = Debug|Win32
 		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.Debug|x86.Build.0 = Debug|Win32
+		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.dfg|x86.ActiveCfg = Debug|x64
+		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.dfg|x86.Build.0 = Debug|x64
 		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.Release|x86.ActiveCfg = Release|Win32
 		{11970D07-B63F-487B-AA02-2EDCAD2F71A0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FB5BD7A-C507-4D8F-97B5-844FBBEBA227}
 	EndGlobalSection
 EndGlobal
