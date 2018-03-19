@@ -234,7 +234,7 @@ void LEDStrip::SetNumLEDs(int numleds, int matrix_size, int matrix_pos, int sect
                 {
                     x_index = (num_leds / sections) + x_index;
                 }
-
+				
                 if (mirror_x)
                 {
                     LEDStripXIndex[led_idx] = (int)(num_leds / sections) - ((x_index * (256.0f / ((num_leds / sections) - 1))));
@@ -255,6 +255,7 @@ void LEDStrip::SetNumLEDs(int numleds, int matrix_size, int matrix_pos, int sect
                     {
                         y_index = ROW_IDX_SINGLE_COLOR;
                     }
+
                     else
                     {
                         if (mirror_y)
@@ -267,7 +268,7 @@ void LEDStrip::SetNumLEDs(int numleds, int matrix_size, int matrix_pos, int sect
                         }
                     }
                 }
-
+		
                 LEDStripYIndex[led_idx] = y_index;
             }
         }
@@ -311,6 +312,9 @@ void LEDStrip::SetNumLEDs(int numleds, int matrix_size, int matrix_pos, int sect
             {
                 LEDStripXIndex[i] = ((num_leds / 2) + 1) + (x_index * (256 / (num_leds + 1)));
             }
+			if (x_index == num_leds -1 ) {
+				LEDStripXIndex[i] = ROW_IDX_SINGLE_COLOR;
+			}
         }
     }
 }
