@@ -96,6 +96,7 @@ public:
     void CorsairKeyboardUpdateThread();
     void SteelSeriesKeyboardUpdateThread();
     void MSIKeyboardUpdateThread();
+	void NZXTKrakenUpdateThread();
     void PoseidonZRGBKeyboardUpdateThread();
     void LEDStripUpdateThread();
 

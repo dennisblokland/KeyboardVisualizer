@@ -83,7 +83,6 @@ int nda_init()
 	bool res = init ? init() : false;
 	if (!res)
 		return ENOSYS;
-
 	NDA_GetGPUCounts fn = (NDA_GetGPUCounts) GetProcAddress(library, "_NDA_GetGPUCounts@4");
 	if (!fn)
 		return ENOSYS;
@@ -128,7 +127,7 @@ int nda_setled(int percent, int r, int g, int b)
 		} else {
 		}
 		if (!percent)
-			res = setrgb(c, 24, MSI_ALL, 0, 0, 0, 4, 0, 0, 0x20, 0x20, 0x20, false); // turn off
+			res = setrgb(c, 24, MSI_ALL, 0, 0, 0, 4, 0, 0, 0x20, 0x20, 0x20, false);// turn off
 		else
 			res = setrgb(c, 21, MSI_ALL, 0, 0, 0, 4, 0, 0, (int)r, (int)g, (int)b, false);
 		if (res) {

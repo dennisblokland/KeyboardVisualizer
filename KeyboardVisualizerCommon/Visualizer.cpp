@@ -37,6 +37,7 @@
 //Includes for devices supported on both Windows and Linux
 #include "SteelSeriesGameSense.h"
 #include "MSIKeyboard.h"
+#include "NZXTKraken.h"
 #include "PoseidonZRGBKeyboard.h"
 #include "LEDStrip.h"
 
@@ -56,6 +57,7 @@ CorsairCKB              ckb;
 RazerChroma             rkb;
 SteelSeriesGameSense    skb;
 MSIKeyboard             mkb;
+NZXTKraken              nkr;
 PoseidonZRGBKeyboard    pkb;
 std::vector<LEDStrip *> str;
 std::vector<LEDStrip *> xmas;
@@ -150,6 +152,12 @@ THREAD mkbthread(void *param)
     Visualizer* vis = static_cast<Visualizer*>(param);
     vis->MSIKeyboardUpdateThread();
     THREADRETURN
+}
+THREAD nkrthread(void *param)
+{
+	Visualizer* vis = static_cast<Visualizer*>(param);
+	vis->NZXTKrakenUpdateThread();
+	THREADRETURN
 }
 
 THREAD pkbthread(void *param)
@@ -563,6 +571,7 @@ void Visualizer::Initialize()
     ckb.Initialize();
     skb.Initialize();
     mkb.Initialize();
+	nkr.Initialize();
     pkb.Initialize();
 
     netmode              = NET_MODE_DISABLED;
@@ -1051,6 +1060,7 @@ void Visualizer::StartThread()
     _beginthread(lkbthread, 0, this);
     _beginthread(skbthread, 0, this);
     _beginthread(mkbthread, 0, this);
+	_beginthread(nkrthread, 0, this);
     _beginthread(pkbthread, 0, this);
     _beginthread(lsthread, 0, this);
 	_beginthread(MSINDAthread, 0, this);
@@ -1065,6 +1075,7 @@ void Visualizer::StartThread()
     pthread_create(&threads[4], NULL, &ckbthread, this);
     pthread_create(&threads[5], NULL, &skbthread, this);
     pthread_create(&threads[6], NULL, &mkbthread, this);
+	pthread_create(&threads[6], NULL, &nkrthread, this);
     pthread_create(&threads[7], NULL, &pkbthread, this);
     pthread_create(&threads[8], NULL, &lsthread, this);
 #endif
@@ -1810,6 +1821,14 @@ void Visualizer::MSIKeyboardUpdateThread()
     {
         Sleep(delay);
     }
+}
+
+void Visualizer::NZXTKrakenUpdateThread()
+{
+	while (nkr.SetLEDs(pixels_out->pixels))
+	{
+		Sleep(delay);
+	}
 }
 
 void Visualizer::PoseidonZRGBKeyboardUpdateThread()
