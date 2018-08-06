@@ -213,6 +213,7 @@
     <ClInclude Include="..\KeyboardVisualizerCommon\chuck_fft.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CmKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CorsairCUE.h" />
+    <ClInclude Include="..\KeyboardVisualizerCommon\hidapi.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\hsv.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\LEDStrip.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\LogitechSDK.h" />

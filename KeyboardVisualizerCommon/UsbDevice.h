@@ -1,7 +1,6 @@
 #ifndef USB_DEVICE_H
 #define USB_DEVICE_H
 
-
 #define HIDAPI
 
 
@@ -10,22 +9,22 @@
 #include "hidapi.h"
 
 
-
 class UsbDevice
 {
 public:
-    UsbDevice();
+	UsbDevice();
 
-    bool OpenDevice(unsigned short vendor, unsigned short product, unsigned int MI);
+	bool OpenDevice(unsigned short vendor, unsigned short product, unsigned int MI);
 
-    bool SendToDevice(unsigned char* data, unsigned int length);
+	bool SendToDevice(unsigned char* data, unsigned int length);
+	bool WriteToDevice(unsigned char* data, unsigned int length);
 
 private:
 #ifdef HIDAPI
-    hid_device*        device;
+	hid_device*        device;
 #elif defined(WIN32)
-    HANDLE             handle;
+	HANDLE             handle;
 #endif
-    
+
 };
 #endif
