@@ -569,7 +569,7 @@ void Visualizer::Initialize()
 #ifdef WIN32
     cmkb.Initialize();
     lkb.Initialize();
-    asa.Initialize();
+	NvNDA.Initialize();
 
     //Initialize devices supported only under Linux
 #else
