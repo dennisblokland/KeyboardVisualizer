@@ -28,6 +28,8 @@
 #include "CmKeyboard.h"
 #include "LogitechSDK.h"
 #include "NvNDAMSI.h"
+#include "AsusAuraSDK.h"
+
 //Includes for devices supported only under Linux
 #else
 #include "RazerChromaLinux.h"
@@ -118,6 +120,13 @@ THREAD MSINDAthread(void *param)
 	Visualizer* vis = static_cast<Visualizer*>(param);
 	vis->NvNDAUpdateThread();
 	THREADRETURN
+}
+
+THREAD asathread(void *param)
+{
+    Visualizer* vis = static_cast<Visualizer*>(param);
+    vis->AuraSDKUpdateThread();
+    THREADRETURN
 }
 
 //Threads for devices supported only under Linux
@@ -336,9 +345,9 @@ void Visualizer::SetDeviceProperty(char * devprop, char * argument)
 
     //Parse device properties exclusive to Windows
 #ifdef WIN32
-    if (strcmp(devprop, "razer_use_keyboard_generic_effect") == 0)
+    if (strcmp(devprop, "razer_use_keyboard_custom_effect") == 0)
     {
-        rkb.use_keyboard_generic_effect = true;
+        rkb.use_keyboard_custom_effect = true;
     }
     else if (strcmp(devprop, "razer_use_headset_custom_effect") == 0)
     {
@@ -560,6 +569,7 @@ void Visualizer::Initialize()
 #ifdef WIN32
     cmkb.Initialize();
     lkb.Initialize();
+    asa.Initialize();
 
     //Initialize devices supported only under Linux
 #else

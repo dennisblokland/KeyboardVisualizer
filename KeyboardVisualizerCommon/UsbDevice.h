@@ -1,12 +1,14 @@
 #ifndef USB_DEVICE_H
 #define USB_DEVICE_H
 
+
 #define HIDAPI
 
 
 #include <cstdio>
 
 #include "hidapi.h"
+#pragma comment(lib, "hidapi.lib")
 
 
 class UsbDevice

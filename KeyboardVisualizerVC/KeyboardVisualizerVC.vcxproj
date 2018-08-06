@@ -30,14 +30,14 @@
     <ProjectGuid>{11970D07-B63F-487B-AA02-2EDCAD2F71A0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>KeyboardVisualizerVC</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>KeyboardVisualizerVC</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -108,7 +108,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>..\dependencies\razer-chroma-2.3.2\inc;..\dependencies\corsair-cue-1.15.28\include;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\razer-chroma-2.9.0\inc;..\dependencies\corsair-cue-1.15.28\include;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Include;..\dependencies\AURA SDK_02_04\sdk</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -116,11 +116,12 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\dependencies\corsair-cue-1.15.28\lib\i386;..\dependencies\corsair-cue-1.15.28\lib\x64;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Lib\x86;..\dependencies\logitech-gaming-led-sdk\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\dependencies\hidapi\lib;..\dependencies\corsair-cue-1.15.28\lib\i386;..\dependencies\corsair-cue-1.15.28\lib\x64;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Lib\x86;..\dependencies\logitech-gaming-led-sdk\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -152,10 +153,11 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>..\dependencies\razer-chroma-2.3.2\inc;..\dependencies\corsair-cue-1.15.28\include;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Include;..\dependencies\inpout32_1501\Win32</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\razer-chroma-2.9.0\inc;..\dependencies\corsair-cue-1.15.28\include;..\dependencies\coolermaster-sdk-160630;..\dependencies\logitech-gaming-led-sdk\Include;..\dependencies\AURA SDK_02_04\sdk</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -188,6 +190,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\KeyboardVisualizerCommon\AsusAuraSDK.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\chuck_fft.c" />
     <ClCompile Include="..\KeyboardVisualizerCommon\CmKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\CorsairCUE.cpp" />
@@ -196,7 +199,6 @@
     <ClCompile Include="..\KeyboardVisualizerCommon\LogitechSDK.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\MSIKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\net_port.cpp" />
-    <ClCompile Include="..\KeyboardVisualizerCommon\NvNDA.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\NZXTKraken.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\PoseidonZRGBKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\RazerChroma.cpp" />
@@ -210,6 +212,7 @@
     <ClCompile Include="KeyboardVisDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\KeyboardVisualizerCommon\AsusAuraSDK.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\chuck_fft.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CmKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CorsairCUE.h" />
@@ -219,7 +222,6 @@
     <ClInclude Include="..\KeyboardVisualizerCommon\LogitechSDK.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\MSIKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\net_port.h" />
-    <ClInclude Include="..\KeyboardVisualizerCommon\NvNDAMSI.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\NZXTKraken.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\PoseidonZRGBKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\RazerChroma.h" />
