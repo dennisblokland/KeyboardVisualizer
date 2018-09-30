@@ -194,6 +194,7 @@
     <ClCompile Include="..\KeyboardVisualizerCommon\chuck_fft.c" />
     <ClCompile Include="..\KeyboardVisualizerCommon\CmKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\CorsairCUE.cpp" />
+    <ClCompile Include="..\KeyboardVisualizerCommon\DrevoKeyboard.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\hsv.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\LEDStrip.cpp" />
     <ClCompile Include="..\KeyboardVisualizerCommon\LogitechSDK.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="..\KeyboardVisualizerCommon\chuck_fft.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CmKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\CorsairCUE.h" />
+    <ClInclude Include="..\KeyboardVisualizerCommon\DrevoKeyboard.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\hidapi.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\hsv.h" />
     <ClInclude Include="..\KeyboardVisualizerCommon\LEDStrip.h" />

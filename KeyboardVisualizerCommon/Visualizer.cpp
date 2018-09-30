@@ -42,13 +42,13 @@
 #include "NZXTKraken.h"
 #include "PoseidonZRGBKeyboard.h"
 #include "LEDStrip.h"
+#include "DrevoKeyboard.h"
 
 //Devices supported only under Windows
 #ifdef WIN32
 CorsairCUE              ckb;
 CmKeyboard              cmkb;
 LogitechSDK             lkb;
-NvNDAMSI				NvNDA;
 
 //Devices supported only under Linux
 #else
@@ -61,6 +61,7 @@ SteelSeriesGameSense    skb;
 MSIKeyboard             mkb;
 NZXTKraken              nkr;
 PoseidonZRGBKeyboard    pkb;
+DrevoKeyboard			dkb;
 std::vector<LEDStrip *> str;
 std::vector<LEDStrip *> xmas;
 std::vector<LEDStrip *> huePlus;
@@ -75,7 +76,7 @@ float fft_nrml[256];
 float fft_fltr[256];
 bool ledstrip_mirror_x = false;
 bool ledstrip_mirror_y = false;
-bool ledstrip_single_color = false;
+bool ledstrip_single_color = true;
 int ledstrip_rotate_x = 0;
 
 //Threads for Visualizer.cpp
@@ -114,12 +115,6 @@ THREAD lkbthread(void *param)
     Visualizer* vis = static_cast<Visualizer*>(param);
     vis->LogitechSDKUpdateThread();
     THREADRETURN
-}
-THREAD MSINDAthread(void *param)
-{
-	Visualizer* vis = static_cast<Visualizer*>(param);
-	vis->NvNDAUpdateThread();
-	THREADRETURN
 }
 
 THREAD asathread(void *param)
@@ -174,6 +169,13 @@ THREAD pkbthread(void *param)
     Visualizer* vis = static_cast<Visualizer*>(param);
     vis->PoseidonZRGBKeyboardUpdateThread();
     THREADRETURN
+}
+
+THREAD dkbthread(void *param)
+{
+	Visualizer* vis = static_cast<Visualizer*>(param);
+	vis->DrevoKeyboardUpdateThread();
+	THREADRETURN
 }
 
 THREAD lsthread(void *param)
@@ -569,7 +571,7 @@ void Visualizer::Initialize()
 #ifdef WIN32
     cmkb.Initialize();
     lkb.Initialize();
-	NvNDA.Initialize();
+	
 
     //Initialize devices supported only under Linux
 #else
@@ -583,6 +585,7 @@ void Visualizer::Initialize()
     mkb.Initialize();
 	nkr.Initialize();
     pkb.Initialize();
+    dkb.Initialize();
 
     netmode              = NET_MODE_DISABLED;
     background_timer     = 0;
@@ -1072,8 +1075,8 @@ void Visualizer::StartThread()
     _beginthread(mkbthread, 0, this);
 	_beginthread(nkrthread, 0, this);
     _beginthread(pkbthread, 0, this);
+    _beginthread(dkbthread, 0, this);
     _beginthread(lsthread, 0, this);
-	_beginthread(MSINDAthread, 0, this);
 
 #else
     pthread_t threads[10];
@@ -1087,6 +1090,7 @@ void Visualizer::StartThread()
     pthread_create(&threads[6], NULL, &mkbthread, this);
 	pthread_create(&threads[6], NULL, &nkrthread, this);
     pthread_create(&threads[7], NULL, &pkbthread, this);
+    pthread_create(&threads[7], NULL, &dkbthread, this);
     pthread_create(&threads[8], NULL, &lsthread, this);
 #endif
 }
@@ -1783,17 +1787,6 @@ void Visualizer::LogitechSDKUpdateThread()
         Sleep(delay);
     }
 }
-
-
-void Visualizer::NvNDAUpdateThread()
-{
-	while (NvNDA.SetLEDs(pixels_out->pixels))
-	{
-		Sleep(delay);
-	}
-	
-	
-}
 //Thread update functions for devices supported only under Linux
 #else
 
@@ -1848,6 +1841,15 @@ void Visualizer::PoseidonZRGBKeyboardUpdateThread()
         Sleep(delay);
     }
 }
+void Visualizer::DrevoKeyboardUpdateThread()
+{
+	while (dkb.SetLEDs(pixels_out->pixels))
+	{
+		Sleep(delay);
+	}
+}
+
+
 
 void Visualizer::LEDStripUpdateThread()
 {

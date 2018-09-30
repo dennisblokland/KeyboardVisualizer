@@ -146,11 +146,12 @@ void parse_argument_string(char * argument, char * value)
         vis.LEDMirrorY();
     }
 
-    if (strcmp(argument, "ledsinglecolor") == 0)
-    {
-        vis.LEDSingleColor();
-    }
+	if (strcmp(argument, "ledsinglecolor") == 0)
+	{
 
+		vis.LEDSingleColor();
+
+	}
     if (strcmp(argument, "ledrotatex") == 0)
     {
         vis.LEDRotateX(atoi(value));

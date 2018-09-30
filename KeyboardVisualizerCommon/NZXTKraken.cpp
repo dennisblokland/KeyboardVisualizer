@@ -111,8 +111,6 @@ bool NZXTKraken::SetLEDs(COLORREF pixels[64][256])
 
 
 	}
-
-
 	usb.WriteToDevice(buf, 65);
 
 	return init_ok;

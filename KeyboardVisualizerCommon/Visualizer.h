@@ -100,6 +100,7 @@ public:
 	void NZXTKrakenUpdateThread();
     void PoseidonZRGBKeyboardUpdateThread();
     void LEDStripUpdateThread();
+    void DrevoKeyboardUpdateThread();
 
     //Called when settings changed
     void OnSettingsChanged();
