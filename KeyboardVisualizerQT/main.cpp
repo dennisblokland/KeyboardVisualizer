@@ -1,5 +1,6 @@
 #include "KeyboardVisDlg.h"
 #include <QApplication>
+#include "KeyboardVisualizerCommon/LEDStrip.h"
 #include "KeyboardVisualizerCommon/Visualizer.h"
 #include "KeyboardVisualizerCommon/VisualizerDefines.h"
 
@@ -110,18 +111,18 @@ void parse_argument_string(char * argument, char * value)
                 vis.avg_mode = atoi(value);
             }
         }
-        else if (strcmp(argument, "ledstrip") == 0)
-        {
-            vis.AddLEDStrip(value);
-        }
-        else if (strcmp(argument, "xmas") == 0)
-        {
-            vis.AddLEDStripXmas(value);
-        }
-        else if (strcmp(argument, "hueplus") == 0)
-        {
-            vis.AddLEDStripHuePlus(value);
-        }
+		else if (strcmp(argument, "ledstrip") == 0)
+		{
+			vis.AddLEDStrip(LED_STRIP_NORMAL, value);
+		}
+		else if (strcmp(argument, "xmas") == 0)
+		{
+			vis.AddLEDStrip(LED_STRIP_XMAS, value);
+		}
+		else if (strcmp(argument, "hueplus") == 0)
+		{
+			vis.AddLEDStrip(LED_STRIP_NORMAL, value);
+		}
         else if (strcmp(argument, "server") == 0)
         {
             vis.InitServer(value);
